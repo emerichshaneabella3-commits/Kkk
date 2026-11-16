@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday! 🎂</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(135deg, #ffd6e7, #e6d6ff);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.card {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px #d99acb;
+    z-index: 2;
+}
+
+h1 {
+    color: #ff69a6;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.cake {
+    font-size: 85px;
+    margin: 15px;
+    animation: bounce 1.5s infinite;
+}
+
+p {
+    color: #777;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+button {
+    background: #ff69a6;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e94b8c;
+}
+
+#message {
+    display: none;
+    margin-top: 20px;
+    color: #d94b91;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -100px;
+    font-size: 40px;
+    animation: float 8s linear infinite;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-120vh);
+    }
+}
+
+@keyframes bounce {
+    50% { transform: translateY(-10px); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🎉 Happy Birthday! 🎉</h1>
+
+    <div class="cake">🎂</div>
+
+    <p>
+        Today is your special day! 
+        I hope your day is filled with happiness,
+        laughter, love, and beautiful memories.
+    </p>
+
+    <button onclick="showMessage()">
+        Open Your Surprise 💌
+    </button>
+
+    <div id="message">
+        <h2>💗 A Special Message 💗</h2>
+        <p>
+            May all your wishes come true.
+            Keep smiling, keep shining, and never
+            forget how special you are.
+            You deserve all the happiness in the world!
+        </p>
+        <h2>Love you! 🥳💕</h2>
+    </div>
+</div>
+
+<script>
+function showMessage() {
+    document.getElementById("message").style.display = "block";
+}
+
+const balloons = ["🎈", "💗", "🎀", "✨"];
+
+for (let i = 0; i < 15; i++) {
+    let balloon = document.createElement("div");
+    balloon.className = "balloon";
+    balloon.innerHTML =
+        balloons[Math.floor(Math.random() * balloons.length)];
+
+    balloon.style.left = Math.random() * 100 + "vw";
+    balloon.style.animationDelay = Math.random() * 8 + "s";
+
+    document.body.appendChild(balloon);
+}
+</script>
+
+</body>
+</html>
