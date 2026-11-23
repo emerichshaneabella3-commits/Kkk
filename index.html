@@ -1,0 +1,756 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Keia! ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --red:#ed202b;
+  --dark:#090909;
+  --black:#151515;
+  --white:#fff;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:var(--dark);
+  color:white;
+  font-family:Poppins,sans-serif;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+body:before {
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(45deg,#191919 25%,transparent 25%),
+    linear-gradient(-45deg,#191919 25%,transparent 25%);
+  background-size:35px 35px;
+  opacity:.22;
+  pointer-events:none;
+  z-index:-1;
+}
+
+h1,h2,h3 { line-height:1.5; }
+
+h1 {
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(22px,5vw,38px);
+  color:var(--red);
+}
+
+h2 {
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(15px,4vw,23px);
+}
+
+p {
+  line-height:1.8;
+  color:#ddd;
+}
+
+button {
+  border:0;
+  background:var(--red);
+  color:white;
+  padding:15px 25px;
+  border-radius:8px;
+  font-weight:800;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 6px #8e1018;
+  margin:10px;
+  transition:.2s;
+}
+
+button:active {
+  transform:translateY(4px);
+  box-shadow:0 2px #8e1018;
+}
+
+button.secondary {
+  background:#292929;
+  box-shadow:0 6px #111;
+}
+
+button:disabled {
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+section {
+  display:none;
+  min-height:100vh;
+  padding:65px 18px;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  animation:appear .7s ease;
+}
+
+section.active { display:flex; }
+
+@keyframes appear {
+  from {opacity:0;transform:translateY(15px)}
+  to {opacity:1;transform:translateY(0)}
+}
+
+.card {
+  width:min(100%,600px);
+  background:#171717;
+  border:2px solid #a81921;
+  border-radius:18px;
+  padding:28px 20px;
+  box-shadow:0 0 25px #ed202b25;
+}
+
+.pixel {
+  font-family:'Press Start 2P',monospace;
+  font-size:11px;
+  line-height:2;
+}
+
+.lego {
+  display:inline-block;
+  background:var(--red);
+  width:43px;
+  height:25px;
+  border-radius:6px 6px 3px 3px;
+  margin:5px;
+  position:relative;
+}
+
+.lego:before {
+  content:"";
+  position:absolute;
+  width:15px;
+  height:8px;
+  background:#ff6464;
+  border-radius:5px 5px 0 0;
+  top:-7px;
+  left:14px;
+}
+
+.envelope {
+  width:270px;
+  height:175px;
+  margin:35px auto;
+  position:relative;
+  background:#e8e0d2;
+  border:5px solid #a81921;
+  border-radius:8px;
+  color:#161616;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 12px 30px #000;
+  transition:transform .5s;
+}
+
+.envelope:before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  border-left:130px solid transparent;
+  border-right:130px solid transparent;
+  border-top:95px solid #d0c3ae;
+  transform-origin:top;
+  transition:transform .7s;
+  z-index:2;
+}
+
+.envelope.open:before {
+  transform:rotateX(180deg);
+}
+
+.stamp {
+  position:absolute;
+  right:12px;
+  top:12px;
+  background:#e21e2b;
+  color:white;
+  padding:8px;
+  font-size:10px;
+  z-index:3;
+}
+
+.envelope span {
+  font-weight:800;
+  font-size:13px;
+  z-index:1;
+}
+
+.clock {
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(25px,8vw,48px);
+  color:var(--red);
+  text-shadow:0 0 20px red;
+  margin:25px 0;
+}
+
+.calendar {
+  background:#eee;
+  color:#111;
+  padding:20px;
+  border-radius:12px;
+  width:230px;
+  margin:20px auto;
+  border-top:12px solid var(--red);
+}
+
+.calendar strong {
+  display:block;
+  font-size:23px;
+}
+
+.calendar b {
+  font-size:35px;
+}
+
+.cake {
+  font-size:100px;
+  cursor:pointer;
+  animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  50% {transform:translateY(-12px)}
+}
+
+.balloon {
+  position:fixed;
+  bottom:-100px;
+  font-size:45px;
+  animation:float 7s linear infinite;
+  pointer-events:none;
+  z-index:10;
+}
+
+@keyframes float {
+  to {transform:translateY(-115vh) rotate(20deg)}
+}
+
+.gift {
+  background:linear-gradient(145deg,#292929,#101010);
+  border:2px solid var(--red);
+  border-radius:15px;
+  padding:25px 15px;
+  margin:15px auto;
+  width:min(100%,420px);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.gift:hover {
+  transform:scale(1.02);
+  box-shadow:0 0 20px #ed202b66;
+}
+
+.gift-icon {font-size:65px;}
+
+.gift small {color:#aaa;}
+
+.gift-content {
+  display:none;
+  width:min(100%,600px);
+  margin:15px auto;
+  background:#191919;
+  padding:20px;
+  border-radius:15px;
+  border:1px solid #ed202b;
+  animation:appear .5s;
+}
+
+.gift-content.show {display:block;}
+
+.gift-content img,
+.gift-content video {
+  max-width:100%;
+  max-height:65vh;
+  border-radius:12px;
+  object-fit:contain;
+}
+
+video {
+  width:100%;
+  background:#000;
+}
+
+iframe {
+  width:100%;
+  height:380px;
+  border:0;
+  border-radius:12px;
+}
+
+.message {
+  text-align:left;
+  line-height:2;
+  font-size:14px;
+  white-space:normal;
+}
+
+.puzzle {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  max-width:310px;
+  margin:25px auto;
+}
+
+.tile {
+  aspect-ratio:1;
+  font-size:22px;
+  margin:0;
+  padding:5px;
+  border-radius:8px;
+  box-shadow:none;
+  background:#ed202b;
+  border:2px solid #ff7777;
+}
+
+.tile.selected {
+  background:white;
+  color:red;
+  transform:scale(.93);
+}
+
+.tile.correct {
+  background:#9c1018;
+}
+
+footer {
+  color:#888;
+  font-size:11px;
+  margin-top:35px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 1. LETTER -->
+<section id="s1" class="active">
+  <div class="card">
+    <div class="lego"></div><div class="lego"></div>
+    <h2>YOU HAVE A MAIL!</h2>
+    <p>A special delivery from</p>
+    <h1>PH 🇵🇭</h1>
+    <p>TO CANADA 🇨🇦</p>
+    <div class="envelope" id="envelope" onclick="tearMail()">
+      <div class="stamp">SPECIAL<br>DELIVERY</div>
+      <span>TO: MY KEIA ❤️</span>
+    </div>
+    <p id="mailHint" class="pixel">TAP THE LETTER TWICE TO TEAR IT OPEN</p>
+  </div>
+</section>
+
+<!-- 2. CLOCK -->
+<section id="s2">
+  <div class="card">
+    <p class="pixel">A SPECIAL MOMENT...</p>
+    <div class="clock" id="clock">00:00 AM</div>
+    <div class="calendar">
+      <strong>NOVEMBER</strong>
+      <b>24</b>
+      <p>2006</p>
+    </div>
+    <p>And just like that...</p>
+    <h1>HAPPY BIRTHDAY!</h1>
+    <h2>MY KEIA ❤️</h2>
+    <button onclick="next(3)">LET'S CELEBRATE!</button>
+  </div>
+</section>
+
+<!-- 3. BIRTHDAY -->
+<section id="s3">
+  <div class="card">
+    <h1>HAPPY BIRTHDAY BABY!</h1>
+    <p>Today is YOUR day. So let's make it special!</p>
+    <div class="cake">🎂</div>
+    <p id="cakeText">Make a wish and blow your candles, baby!</p>
+    <button onclick="blow()">🎂 BLOW THE CANDLES</button>
+    <p id="wish"></p>
+    <button id="continueCake" style="display:none" onclick="next(4)">CONTINUE ❤️</button>
+  </div>
+</section>
+
+<!-- 4. CONTINUE -->
+<section id="s4">
+  <div class="card">
+    <div style="font-size:65px">🎁</div>
+    <h2>DO YOU WANT TO CONTINUE?</h2>
+    <p>I still have a lot of surprises for you hehe.</p>
+    <button onclick="next(5)">YESSS! ❤️</button>
+    <button class="secondary" id="noBtn" onmouseover="runNo()" onclick="runNo()">NO 😤</button>
+    <p id="noText"></p>
+  </div>
+</section>
+
+<!-- 5. YAY -->
+<section id="s5">
+  <div class="card">
+    <h1>YAYYYYY!!</h1>
+    <h2>BUTI NAMAN! HAHAHA ❤️</h2>
+    <div style="font-size:75px">🥳🎈🎈</div>
+    <p>Okay, baby. Are you ready?</p>
+    <h2>YOU READY TO SEE MY GIFT???</h2>
+    <button onclick="next(6)">OPEN YOUR GIFTS!</button>
+  </div>
+</section>
+
+<!-- 6. GIFTS -->
+<section id="s6">
+  <h1>YOUR GIFT COLLECTION</h1>
+  <p class="pixel">MADE WITH LOVE FROM PH TO CANADA</p>
+
+  <div class="gift" onclick="openGift(1)">
+    <div class="gift-icon">🎵</div>
+    <h2>GIFT NO. 1</h2>
+    <p>Something for your ears ❤️</p>
+    <small id="count1">TAP TWICE TO OPEN</small>
+  </div>
+  <div id="gift1" class="gift-content">
+    <h2>A PLAYLIST FOR YOU</h2>
+    <p>Every song reminds me of something. I hope you find a little piece of us in these songs.</p>
+    <iframe
+      src="https://open.spotify.com/embed/playlist/1HwAa3Y5Vdac7TCXtQ3m4q?utm_source=generator"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
+    <p>Choose a song, baby. Enjoy listening! ❤️</p>
+  </div>
+
+  <div class="gift" onclick="openGift(2)">
+    <div class="gift-icon">🎨</div>
+    <h2>GIFT NO. 2</h2>
+    <p>A little piece of art</p>
+    <small id="count2">TAP TO OPEN</small>
+  </div>
+  <div id="gift2" class="gift-content">
+    <img src="hirono.PNG" alt="Hirono drawing">
+    <h2>A LITTLE ART FOR YOU</h2>
+    <p>A simple art for you, baby, cause you make my life colorful. ❤️</p>
+  </div>
+
+  <div class="gift" onclick="openGift(3)">
+    <div class="gift-icon">🍽️</div>
+    <h2>GIFT NO. 3</h2>
+    <p>Online handaan!</p>
+    <small id="count3">TAP TO OPEN</small>
+  </div>
+  <div id="gift3" class="gift-content">
+    <h2>KAIN KA MUNA, BABY!</h2>
+    <video controls playsinline preload="metadata">
+      <source src="online-handaan.mp4.MOV" type="video/quicktime">
+    </video>
+    <p>Eat well, okay? Enjoy your virtual handaan! HAHAHA ❤️</p>
+  </div>
+
+  <div class="gift" onclick="openGift(4)">
+    <div class="gift-icon">🌹</div>
+    <h2>GIFT NO. 4</h2>
+    <p>A flower for you</p>
+    <small id="count4">TAP TO OPEN</small>
+  </div>
+  <div id="gift4" class="gift-content">
+    <img src="flower.PNG" alt="Flower gift">
+    <p>I know you don't like flowers but you like me, hehhehehe. I love you, bebe! ❤️</p>
+  </div>
+
+  <button onclick="next(7)">NEXT SURPRISE! 🧱</button>
+</section>
+
+<!-- 7. LEGO PUZZLE -->
+<section id="s7">
+  <div class="card">
+    <h2>WAIT! ONE MORE CHALLENGE!</h2>
+    <div style="font-size:55px">🧱❤️🧱</div>
+    <p>Before you can continue, you need to build your LEGO puzzle!</p>
+    <p>Tap two blocks to swap their positions. Arrange them from 1 to 8, then the empty block.</p>
+    <div class="puzzle" id="puzzle"></div>
+    <p id="puzzleStatus">LET'S BUILD SOMETHING BEAUTIFUL!</p>
+    <button id="puzzleNext" style="display:none" onclick="next(8)">WE DID IT! ❤️</button>
+    <button class="secondary" onclick="shufflePuzzle()">SHUFFLE AGAIN</button>
+  </div>
+</section>
+
+<!-- 8. SONG -->
+<section id="s8">
+  <div class="card">
+    <div style="font-size:75px">🎤🎶</div>
+    <h1>THIS ONE IS FOR YOU!</h1>
+    <h2>KANTAHAN KA RAW NILA!</h2>
+    <p>May special performance pa tayo, baby. HAHAHA.</p>
+    <video controls playsinline preload="metadata">
+      <source src="song.MP4" type="video/mp4">
+    </video>
+    <button onclick="next(9)">NEXT GIFT ❤️</button>
+  </div>
+</section>
+
+<!-- 9. GREETINGS -->
+<section id="s9">
+  <div class="card">
+    <h2>ANOTHER GIFT?!</h2>
+    <div style="font-size:80px">🎁</div>
+    <p>Two taps, baby. What's inside?</p>
+    <button onclick="openLastGift(9)">OPEN THE BOX</button>
+    <p id="lastCount9"></p>
+    <div id="lastVideo9" style="display:none">
+      <video controls playsinline>
+        <source src="greetings.mp4.mov" type="video/quicktime">
+      </video>
+      <button onclick="next(10)">ONE LAST THING...</button>
+    </div>
+  </div>
+</section>
+
+<!-- 10. LAST VIDEO -->
+<section id="s10">
+  <div class="card">
+    <h2>LAST BUT NOT THE LEAST...</h2>
+    <div style="font-size:75px">❤️🎁❤️</div>
+    <p>Hehehehehe. I saved something special for last.</p>
+    <button onclick="openLastGift(10)">OPEN YOUR LAST GIFT</button>
+    <p id="lastCount10"></p>
+    <div id="lastVideo10" style="display:none">
+      <video controls playsinline>
+        <source src="self.mp4.MOV" type="video/quicktime">
+      </video>
+      <button onclick="next(11)">READ MY LETTER ❤️</button>
+    </div>
+  </div>
+</section>
+
+<!-- 11. FINAL LETTER -->
+<section id="s11">
+  <div class="card">
+    <div style="font-size:65px">❤️</div>
+    <h1>HAPPY BIRTHDAY, KEIA!</h1>
+    <p class="pixel">A LETTER FROM YOUR BABY</p>
+
+    <div class="message">
+      <p>Happy birthday, my Keia! ❤️</p>
+
+      <p>I hope you know how much you are loved, especially by me. I don't think I'll ever get tired of reminding you how amazing you are and how proud I am of you. Not just because of the things you achieve or the things you do, but simply because of who you are.</p>
+
+      <p>I know life can get really draining sometimes, and I know there are days when things don't go the way you want them to. But I hope you never lose yourself along the way. I hope you always find little reasons to keep going, rediscover your purpose, and find happiness in the simplest things. I hope you find peace even in the things you cannot control.</p>
+
+      <p>Alam ko din how much you try to be there for everyone, how you make sure the people around you are okay, and how you always try to give what you can. You don't always have to be the strong one, baby. You don't always have to figure everything out on your own. Let me be there for you, too. Let me take care of you on the days you don't know how to take care of yourself. You can rest with me, you can be vulnerable with me, and you never have to pretend that everything is okay when it isn't. I really want to be someone you can come home to, even on your hardest days.</p>
+
+      <p>I hope you get everything your heart has been quietly wishing for, not just today but in all the years ahead of you. You're allowed to take your time. You're allowed to figure things out at your own pace.</p>
+
+      <p>And please, never think that you are difficult to love just because you have bad days or because sometimes you don't know what to do with yourself. I love you in your happiest moments, but I also want to love you through the days when you feel like you're not at your best. Always remember that you will always have me cheering for you. Even when you feel like you're not making progress, I'll be proud of how far you've come.</p>
+
+      <p>Thank you for being you, baby. I'm so lucky that I get to know you, love you, and witness all the versions of you that life has yet to bring. Thank you for existing, beb.</p>
+
+      <p>Happy birthday again, baby ko. I love you always, in the little things, in the big things, and even in the moments when you forget how lovable you are. More birthdays together, baby.</p>
+
+      <p>Sorry if this is the only gift I can give. I know na hindi lang 'to yung deserve mo cuz you deserve everything good, and more than this. Bawi na lang ako pag medyo malapit ka na.</p>
+
+      <p><b>GOOD HEALTH, BABY HA! I LOVE YOU SO MUCH! ❤️</b></p>
+    </div>
+
+    <div style="font-size:50px;margin-top:25px">❤️🧱❤️</div>
+    <h2>TO MORE BIRTHDAYS TOGETHER!</h2>
+    <p>From your favorite person in the Philippines. 🇵🇭</p>
+    <p class="pixel">I LOVE YOU, KEIA.</p>
+    <button onclick="celebrateAgain()">ONE MORE HUG! 🤗</button>
+  </div>
+  <footer>MADE WITH LOVE FROM PH TO CANADA ❤️</footer>
+</section>
+
+<script>
+let mailTaps=0;
+
+function next(number) {
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+number).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function tearMail() {
+  mailTaps++;
+  const env=document.getElementById('envelope');
+
+  if(mailTaps===1) {
+    document.getElementById('mailHint').textContent="ONE MORE TAP, BABY!";
+    env.style.transform="rotate(-3deg)";
+  }
+
+  if(mailTaps===2) {
+    env.classList.add('open');
+    document.getElementById('mailHint').textContent="DELIVERED WITH LOVE ❤️";
+    setTimeout(()=>next(2),1200);
+    startClock();
+  }
+}
+
+function startClock() {
+  let count=0;
+  const clock=document.getElementById('clock');
+  const timer=setInterval(()=>{
+    count++;
+    let hours=12+Math.floor(count/4);
+    let minutes=(count*7)%60;
+    clock.textContent="02:"+String(minutes).padStart(2,'0')+" AM";
+
+    if(count>=5) {
+      clearInterval(timer);
+      clock.textContent="02:33 AM";
+    }
+  },350);
+}
+
+function blow() {
+  document.getElementById('cakeText').textContent="THE CANDLES ARE BLOWN! 🎂";
+  document.getElementById('wish').textContent="I hope all your wishes come true, baby! ❤️";
+  document.querySelector('.cake').textContent="🍰";
+  document.getElementById('continueCake').style.display="inline-block";
+
+  for(let i=0;i<15;i++) {
+    let b=document.createElement('div');
+    b.className='balloon';
+    b.textContent=['🎈','❤️','🎉'][i%3];
+    b.style.left=Math.random()*100+'%';
+    b.style.animationDelay=Math.random()*3+'s';
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),8000);
+  }
+}
+
+function runNo() {
+  const btn=document.getElementById('noBtn');
+  const x=Math.random()*180-90;
+  const y=Math.random()*100-50;
+  btn.style.transform=`translate(${x}px,${y}px)`;
+  document.getElementById('noText').textContent="Oops! You can't say no to more surprises! HAHAHA 😈";
+}
+
+// Gift double taps
+let taps={1:0,2:0,3:0,4:0};
+let opened={};
+
+function openGift(id) {
+  if(opened[id]) {
+    document.getElementById('gift'+id).classList.toggle('show');
+    return;
+  }
+
+  taps[id]++;
+  const hint=document.getElementById('count'+id);
+
+  if(taps[id]===1) {
+    hint.textContent="ONE MORE TAP TO OPEN!";
+  }
+
+  if(taps[id]>=2) {
+    opened[id]=true;
+    hint.textContent="OPENED WITH LOVE ❤️";
+    document.getElementById('gift'+id).classList.add('show');
+  }
+}
+
+// LEGO puzzle
+let puzzle=[1,2,3,4,5,6,7,0,8];
+let selected=null;
+
+function renderPuzzle() {
+  const container=document.getElementById('puzzle');
+  container.innerHTML='';
+
+  puzzle.forEach((number,index)=>{
+    const btn=document.createElement('button');
+    btn.className='tile';
+    btn.textContent=number===0?'':number;
+    if(number===0) btn.style.background='#222';
+    if(selected===index) btn.classList.add('selected');
+    btn.onclick=()=>selectTile(index);
+    container.appendChild(btn);
+  });
+}
+
+function selectTile(index) {
+  if(selected===null) {
+    selected=index;
+  } else {
+    [puzzle[selected],puzzle[index]]=[puzzle[index],puzzle[selected]];
+    selected=null;
+  }
+
+  renderPuzzle();
+  checkPuzzle();
+}
+
+function shufflePuzzle() {
+  // A simple solvable shuffle using valid neighboring moves
+  for(let i=0;i<35;i++) {
+    let empty=puzzle.indexOf(0);
+    let neighbors=[];
+    if(empty%3!==0) neighbors.push(empty-1);
+    if(empty%3!==2) neighbors.push(empty+1);
+    if(empty>=3) neighbors.push(empty-3);
+    if(empty<6) neighbors.push(empty+3);
+
+    let choice=neighbors[Math.floor(Math.random()*neighbors.length)];
+    [puzzle[empty],puzzle[choice]]=[puzzle[choice],puzzle[empty]];
+  }
+
+  selected=null;
+  document.getElementById('puzzleNext').style.display='none';
+  document.getElementById('puzzleStatus').textContent="BUILD YOUR LEGO PUZZLE!";
+  renderPuzzle();
+}
+
+function checkPuzzle() {
+  if(puzzle.every((n,i)=>n===(i===8?0:i+1))) {
+    document.getElementById('puzzleStatus').textContent="YOU DID IT!! WE BUILT IT TOGETHER! ❤️";
+    document.getElementById('puzzleNext').style.display='inline-block';
+  }
+}
+
+renderPuzzle();
+shufflePuzzle();
+
+// Last two gifts require two taps
+let lastTaps={9:0,10:0};
+
+function openLastGift(id) {
+  lastTaps[id]++;
+  const hint=document.getElementById('lastCount'+id);
+
+  if(lastTaps[id]===1) {
+    hint.textContent="ONE MORE TAP, BABY! ❤️";
+  } else {
+    document.getElementById('lastVideo'+id).style.display='block';
+    hint.textContent="SURPRISE!! ❤️";
+  }
+}
+
+function celebrateAgain() {
+  for(let i=0;i<30;i++) {
+    const el=document.createElement('div');
+    el.className='balloon';
+    el.textContent=['❤️','🎈','🎉','🧱'][i%4];
+    el.style.left=Math.random()*100+'%';
+    el.style.animationDuration=(4+Math.random()*5)+'s';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),9000);
+  }
+  alert("HAPPY BIRTHDAY, MY KEIA! I LOVE YOU! ❤️");
+}
+</script>
+
+</body>
+</html>
