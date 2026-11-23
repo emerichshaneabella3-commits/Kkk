@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Keia ❤️</title>
+
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #100b0c;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 35px 18px;
+  align-items: center;
+  justify-content: center;
+}
+.screen.active { display: flex; }
+.panel {
+  width: 100%;
+  max-width: 700px;
+  padding: 30px 20px;
+  border-radius: 25px;
+  background: linear-gradient(145deg,#291216,#111);
+  border: 2px solid #4b2028;
+  box-shadow: 0 15px 45px #000;
+}
+h1 { font-size: clamp(2.3rem,8vw,4.5rem); }
+h2 { color: #ff5968; }
+p { line-height: 1.8; color: #f4dddd; }
+.red { color: #ff354c; }
+button {
+  background: #e32636;
+  border: 0;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 8px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #811421;
+}
+button:active { transform: translateY(4px); }
+.secondary { background: #292929; }
+.small { font-size: 12px; color: #aaa; }
+
+.bricks {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px;
+}
+.brick {
+  width: 35px;
+  height: 23px;
+  background: #e32636;
+  border-radius: 5px;
+  position: relative;
+}
+.brick:before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 8px;
+  width: 9px;
+  height: 8px;
+  background: #e32636;
+  border-radius: 3px 3px 0 0;
+  box-shadow: 12px 0 #e32636;
+}
+
+.envelope {
+  width: 280px;
+  height: 180px;
+  margin: 35px auto;
+  background: #c91f32;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+}
+.envelope:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #f04b59;
+  clip-path: polygon(0 0,100% 0,50% 65%);
+}
+.flap {
+  position: absolute;
+  inset: 0;
+  background: #ff5968;
+  clip-path: polygon(0 0,100% 0,50% 100%);
+  transform-origin: top;
+  transition: 1s;
+  z-index: 3;
+}
+.letter {
+  position: absolute;
+  background: #fff1df;
+  color: #222;
+  width: 85%;
+  height: 130px;
+  left: 7.5%;
+  top: 20px;
+  padding: 15px 5px;
+  font-weight: bold;
+  transition: 1s;
+}
+.envelope.open .flap { transform: rotateX(180deg); }
+.envelope.open .letter { transform: translateY(-100px); }
+
+.clock {
+  color: #ff5968;
+  font-size: clamp(3rem,10vw,5rem);
+  font-weight: bold;
+}
+.cake {
+  font-size: 100px;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  50% { transform: translateY(-12px); }
+}
+
+.gift-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 25px;
+}
+.gift {
+  background: #261619;
+  border: 1px solid #71313c;
+  border-radius: 18px;
+  padding: 20px 8px;
+}
+.gift span { font-size: 45px; }
+.gift-content {
+  display: none;
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 15px;
+  background: #fff0e4;
+  color: #211719;
+}
+.gift-content p { color: #322; }
+img {
+  max-width: 100%;
+  max-height: 350px;
+  border-radius: 15px;
+}
+video {
+  max-width: 100%;
+  max-height: 60vh;
+  border-radius: 15px;
+}
+iframe {
+  width: 100%;
+  height: 350px;
+  border: 0;
+  border-radius: 15px;
+}
+.balloon {
+  position: fixed;
+  bottom: -100px;
+  width: 45px;
+  height: 60px;
+  border-radius: 50%;
+  animation: float 7s linear forwards;
+  z-index: 10;
+}
+@keyframes float {
+  to { transform: translateY(-120vh); opacity: 0; }
+}
+.puzzle {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 7px;
+  max-width: 320px;
+  margin: 20px auto;
+}
+.tile {
+  aspect-ratio: 1;
+  border: 2px solid white;
+  border-radius: 10px;
+  background: #e32636;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+.tile.empty {
+  background: #111;
+  border: 2px dashed #555;
+}
+.tile.selected { outline: 4px solid gold; }
+.message { text-align: left; }
+.message p { margin-bottom: 20px; }
+</style>
+</head>
+
+<body>
+
+<!-- 1. LETTER FROM PH TO CANADA -->
+<section class="screen active" id="mail">
+<div class="panel">
+<p>✉️ SPECIAL DELIVERY · PHILIPPINES TO CANADA</p>
+<h1>A LETTER FOR <span class="red">KEIA</span></h1>
+<p>From PH, with all my love, straight to Canada.</p>
+<div class="envelope" id="envelope" onclick="openMail()">
+<div class="letter">
+TO: MY FAVORITE PERSON ❤️<br><br>
+FROM: YOUR GIRL IN THE PHILIPPINES
+</div>
+<div class="flap"></div>
+</div>
+<p id="mailHint">Tap the envelope to open your mail.</p>
+<button id="mailButton" onclick="openMail()">OPEN MY LETTER ✉️</button>
+</div>
+</section>
+
+<!-- 2. TIME AND DATE -->
+<section class="screen" id="time">
+<div class="panel">
+<p>A MOMENT MADE JUST FOR YOU</p>
+<div class="clock">2:33 AM</div>
+<h2>NOVEMBER 24, 2006</h2>
+<div class="bricks">
+<div class="brick"></div><div class="brick"></div>
+<div class="brick"></div><div class="brick"></div>
+</div>
+<h1>HAPPY BIRTHDAY,<br><span class="red">MY KEIA!</span></h1>
+<p>Today is all about celebrating YOU.</p>
+<button onclick="go('question')">LET'S GO ❤️</button>
+</div>
+</section>
+
+<!-- 3. YES OR NO -->
+<section class="screen" id="question">
+<div class="panel">
+<h1>Do you want to continue?</h1>
+<p>May mga surprise pa ako for you, baby. Hehehe.</p>
+<button onclick="go('yay')">YES! ❤️</button>
+<button class="secondary" id="noButton"
+onmouseover="runNo()" ontouchstart="runNo()"
+onclick="runNo()">NO 🙃</button>
+<p class="small">P.S. There's only one correct answer.</p>
+</div>
+</section>
+
+<section class="screen" id="yay">
+<div class="panel">
+<h1>YAY! BUTI NAMAN! ❤️</h1>
+<p>Hehehe, alam ko namang curious ka!</p>
+<button onclick="go('cake')">NEXT SURPRISE 🎂</button>
+</div>
+</section>
+
+<!-- 4. CAKE -->
+<section class="screen" id="cake">
+<div class="panel">
+<h1>MAKE A WISH, BABY!</h1>
+<div class="cake" id="cakeEmoji">🎂</div>
+<p id="cakeText">Take a deep breath and blow your candles!</p>
+<button id="blowButton" onclick="blowCake()">BLOW THE CANDLES 💨</button>
+<div id="cakeNext" style="display:none">
+<p>WISH GRANTED! ✨</p>
+<button onclick="balloons();go('ready')">RELEASE THE BALLOONS 🎈</button>
+</div>
+</div>
+</section>
+
+<!-- 5. GIFTS INTRO -->
+<section class="screen" id="ready">
+<div class="panel">
+<h1>You ready to see my gift???</h1>
+<p>I prepared little pieces of my love for you.</p>
+<button onclick="go('gifts')">I'M READY! 🎁</button>
+</div>
+</section>
+
+<!-- 6. FOUR GIFT BOXES -->
+<section class="screen" id="gifts">
+<div class="panel">
+<h1>YOUR LITTLE GIFTS ❤️🖤</h1>
+<p>Each box needs TWO TAPS to open!</p>
+
+<div class="gift-grid">
+
+<div class="gift">
+<span>🎵</span>
+<h3>BOX 01 · PLAYLIST</h3>
+<p>A soundtrack for you.</p>
+<button onclick="openGift(0)">TAP TO OPEN (0/2)</button>
+</div>
+
+<div class="gift">
+<span>🎨</span>
+<h3>BOX 02 · HIRONO</h3>
+<p>A little art for you.</p>
+<button onclick="openGift(1)">TAP TO OPEN (0/2)</button>
+</div>
+
+<div class="gift">
+<span>🍽️</span>
+<h3>BOX 03 · ONLINE HANDAAN</h3>
+<p>Kain ka muna!</p>
+<button onclick="openGift(2)">TAP TO OPEN (0/2)</button>
+</div>
+
+<div class="gift">
+<span>🌹</span>
+<h3>BOX 04 · FLOWER</h3>
+<p>A little flower for you.</p>
+<button onclick="openGift(3)">TAP TO OPEN (0/2)</button>
+</div>
+
+</div>
+
+<div class="gift-content" id="giftContent"></div>
+
+<div id="puzzlePrompt" style="display:none">
+<p>You've opened everything! But wait...</p>
+<button onclick="go('puzzle')">BUILD THE LEGO PUZZLE 🧱</button>
+</div>
+</div>
+</section>
+
+<!-- 7. LEGO PUZZLE -->
+<section class="screen" id="puzzle">
+<div class="panel">
+<h1>LET'S BUILD IT, BABY! 🧱</h1>
+<p>Tap two bricks to swap them. Arrange the numbers from 1 to 8, leaving the empty space last.</p>
+<div class="puzzle" id="puzzleBoard"></div>
+<p id="puzzleStatus">You got this!</p>
+<button class="secondary" onclick="shufflePuzzle()">SHUFFLE AGAIN</button>
+<div id="puzzleDone" style="display:none">
+<h2>YOU DID IT! 🎉</h2>
+<p>Our little LEGO masterpiece is complete!</p>
+<button onclick="go('song')">CONTINUE 🎤</button>
+</div>
+</div>
+</section>
+
+<!-- 8. SONG -->
+<section class="screen" id="song">
+<div class="panel">
+<h1>KANTAHAN KA DAW NILA! 🎤</h1>
+<p>A little performance for the birthday girl.</p>
+<video controls playsinline>
+<source src="assets/song.mp4" type="video/mp4">
+</video>
+<p class="small">Enjoy your little concert, baby!</p>
+<button onclick="go('greetings')">ANOTHER GIFT 🎁</button>
+</div>
+</section>
+
+<!-- 9. GREETINGS VIDEO -->
+<section class="screen" id="greetings">
+<div class="panel">
+<h1>ONE MORE LITTLE BOX 📦</h1>
+<p>Two taps to open!</p>
+<button id="greetButton" onclick="openGreetings()">TAP TO OPEN (0/2)</button>
+<div id="greetVideo" style="display:none">
+<video controls playsinline>
+<source src="assets/greetings.mp4" type="video/mp4">
+</video>
+<button onclick="go('self')">LAST GIFT ❤️</button>
+</div>
+</div>
+</section>
+
+<!-- 10. SELF GIFT -->
+<section class="screen" id="self">
+<div class="panel">
+<h1>LAST BUT NOT THE LEAST...</h1>
+<h2>HEHEHEHEHHEH ❤️</h2>
+<p>And for the last gift... it's me. Your girl, always cheering for you.</p>
+<img src="assets/self.jpg" alt="Your final gift">
+<button onclick="go('letter')">ONE LAST THING 💌</button>
+</div>
+</section>
+
+<!-- 11. FINAL MESSAGE -->
+<section class="screen" id="letter">
+<div class="panel">
+<h1>Happy birthday,<br><span class="red">my Keia!</span></h1>
+
+<div class="message">
+<p>I hope you know how much you are loved, especially by me. I don't think I'll ever get tired of reminding you how amazing you are and how proud I am of you. Not just because of the things you achieve or the things you do, but simply because of who you are.</p>
+
+<p>I know life can get really draining sometimes, and I know there are days when things don't go the way you want them to. But I hope you never lose yourself along the way. I hope you always find little reasons to keep going, rediscover your purpose, and find happiness in the simplest things. I hope you find peace even in the things you cannot control.</p>
+
+<p>Alam ko din how much you try to be there for everyone, how you make sure the people around you are okay, and how you always try to give what you can. You don't always have to be the strong one, baby. You don't always have to figure everything out on your own. Let me be there for you, too. Let me take care of you on the days you don't know how to take care of yourself. You can rest with me, you can be vulnerable with me, and you never have to pretend that everything is okay when it isn't. I really want to be someone you can come home to, even on your hardest days.</p>
+
+<p>I hope you get everything your heart has been quietly wishing for, not just today but in all the years ahead of you. You're allowed to take your time. You're allowed to figure things out at your own pace.</p>
+
+<p>And please, never think that you are difficult to love just because you have bad days or because sometimes you don't know what to do with yourself. I love you in your happiest moments, but I also want to love you through the days when you feel like you're not at your best. Always remember that you will always have me cheering for you. Even when you feel like you're not making progress, I'll be proud of how far you've come.</p>
+
+<p>Thank you for being you, baby. I'm so lucky that I get to know you, love you, and witness all the versions of you that life has yet to bring. Thank you for existing, beb.</p>
+
+<p>Happy birthday again, baby ko. I love you always, in the little things, in the big things, and even in the moments when you forget how lovable you are. More birthdays together, baby. Sorry if this is the only gift I can give. I know na hindi lang 'to yung deserve mo, 'cause you deserve everything good and more than this. Bawi na lang ako pag medyo malapit ka na. GOOD HEALTH, BABY HA!</p>
+
+<h2 style="text-align:center">I LOVE YOU, MY KEIA! ❤️🖤</h2>
+</div>
+</div>
+</section>
+
+<script>
+function go(id) {
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ window.scrollTo(0,0);
+}
+
+let mailOpened=false;
+function openMail() {
+ const env=document.getElementById('envelope');
+ if(!mailOpened) {
+  env.classList.add('open');
+  mailOpened=true;
+  document.getElementById('mailHint').textContent='Your letter is opening...';
+  document.getElementById('mailButton').textContent='READ MY LETTER ❤️';
+ } else go('time');
+}
+
+function runNo() {
+ const b=document.getElementById('noButton');
+ const parent=b.parentElement;
+ b.style.position='relative';
+ b.style.left=(Math.random()*180-90)+'px';
+ b.style.top=(Math.random()*50-25)+'px';
+}
+
+function blowCake() {
+ document.getElementById('cakeEmoji').textContent='🍰';
+ document.getElementById('cakeText').textContent='You did it! May all your wishes come true!';
+ document.getElementById('blowButton').style.display='none';
+ document.getElementById('cakeNext').style.display='block';
+}
+
+function balloons() {
+ const colors=['#e32636','#ff5968','#111','#ffd166'];
+ for(let i=0;i<20;i++){
+  let b=document.createElement('div');
+  b.className='balloon';
+  b.style.left=Math.random()*100+'vw';
+  b.style.background=colors[i%4];
+  b.style.animationDelay=Math.random()*2+'s';
+  document.body.appendChild(b);
+  setTimeout(()=>b.remove(),9000);
+ }
+}
+
+let counts=[0,0,0,0];
+let opened=[false,false,false,false];
+
+const gifts=[
+`<h2>🎵 A PLAYLIST FOR YOU</h2>
+<p>Choose a song, baby. I hope some of these remind you of us and make your days brighter.</p>
+<iframe src="https://open.spotify.com/embed/playlist/1HwAa3Y5Vdac7TCXtQ3m4q"></iframe>
+<p><a href="https://open.spotify.com/playlist/1HwAa3Y5Vdac7TCXtQ3m4q" target="_blank">Open playlist on Spotify</a></p>`,
+
+`<h2>🎨 A LITTLE ART FOR YOU</h2>
+<p>Just a simple art for you, baby, kasi you make my life colorful. ❤️</p>
+<img src="assets/hirono.png" alt="Hirono drawing">`,
+
+`<h2>🍽️ ONLINE HANDAAN</h2>
+<p>Kain ka muna, baby! Consider this your little online handaan. Wish I could be there to share every bite with you.</p>
+<img src="assets/online-handaan.jpg" alt="Online handaan">`,
+
+`<h2>🌹 A FLOWER FOR YOU</h2>
+<p>I know you don't like flowers, but you like me hehhehehe. I love you, bebe! ❤️</p>
+<img src="assets/flower.png" alt="Flower gift">`
+];
+
+function openGift(i) {
+ if(opened[i]) return;
+ counts[i]++;
+ const buttons=document.querySelectorAll('.gift button');
+ if(counts[i]<2) {
+  buttons[i].textContent='TAP AGAIN (1/2)';
+  return;
+ }
+ opened[i]=true;
+ buttons[i].textContent='OPENED ✓';
+ const content=document.getElementById('giftContent');
+ content.innerHTML=gifts[i];
+ content.style.display='block';
+ content.scrollIntoView({behavior:'smooth',block:'nearest'});
+ if(opened.every(Boolean)) {
+  document.getElementById('puzzlePrompt').style.display='block';
+ }
+}
+
+let greetCount=0;
+function openGreetings() {
+ greetCount++;
+ const b=document.getElementById('greetButton');
+ if(greetCount<2) {
+  b.textContent='ONE MORE TAP! (1/2)';
+  return;
+ }
+ b.style.display='none';
+ document.getElementById('greetVideo').style.display='block';
+}
+
+let tiles=[],selected=null,solved=false;
+function shufflePuzzle() {
+ let a=[1,2,3,4,5,6,7,8,0];
+ do {
+  for(let i=8;i>0;i--){
+   let j=Math.floor(Math.random()*(i+1));
+   [a[i],a[j]]=[a[j],a[i]];
+  }
+ } while(!solvable(a)||a.every((v,i)=>v===(i+1)%9));
+ tiles=a;
+ selected=null;
+ solved=false;
+ document.getElementById('puzzleDone').style.display='none';
+ document.getElementById('puzzleStatus').textContent='Tap two bricks to swap them.';
+ renderPuzzle();
+}
+
+function solvable(a) {
+ let inv=0;
+ for(let i=0;i<8;i++)
+  for(let j=i+1;j<9;j++)
+   if(a[i]&&a[j]&&a[i]>a[j])inv++;
+ return inv%2===0;
+}
+
+function renderPuzzle() {
+ const board=document.getElementById('puzzleBoard');
+ board.innerHTML='';
+ tiles.forEach((v,i)=>{
+  const b=document.createElement('button');
+  b.className='tile'+(v===0?' empty':'')+(selected===i?' selected':'');
+  b.textContent=v||'';
+  b.onclick=()=>pickTile(i);
+  board.appendChild(b);
+ });
+}
+
+function pickTile(i) {
+ if(solved||tiles[i]===0)return;
+ if(selected===null) {
+  selected=i;
+  renderPuzzle();
+  return;
+ }
+ if(selected===i) {
+  selected=null;
+  renderPuzzle();
+  return;
+ }
+ [tiles[selected],tiles[i]]=[tiles[i],tiles[selected]];
+ selected=null;
+ renderPuzzle();
+ if(tiles.every((v,i)=>v===(i+1)%9)) {
+  solved=true;
+  document.getElementById('puzzleStatus').textContent='Perfectly built!';
+  document.getElementById('puzzleDone').style.display='block';
+ }
+}
+shufflePuzzle();
+</script>
+
+</body>
+</html>
